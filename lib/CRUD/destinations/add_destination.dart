@@ -165,7 +165,7 @@ Future<void> _selectImages() async {
                 //description
                 TextFormField(
                   controller: _descriptionController,
-                  decoration: InputDecoration(labelText: 'Desciption'),
+                  decoration: InputDecoration(labelText: 'Description'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter a description';

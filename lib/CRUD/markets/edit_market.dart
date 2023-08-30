@@ -23,7 +23,7 @@ class _EditMarketState extends State<EditMarket> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _descriptionController=TextEditingController();
-  //final _addressController = TextEditingController();
+  final _addressController = TextEditingController();
   late var _cityIdController ;
   late var ID;
 
@@ -76,6 +76,7 @@ Future<void> _submitForm() async {
           'description': _descriptionController.text,
           'image': result.fileName ?? 'image not found',
           'cityId': _cityIdController,
+          'address':_addressController.text
 
         },
       );
@@ -153,6 +154,18 @@ Future<void> _submitForm() async {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter a description';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 16),
+                //address
+                TextFormField(
+                  controller: _addressController,
+                  decoration: InputDecoration(labelText: 'Address'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter an address';
                     }
                     return null;
                   },

@@ -28,62 +28,106 @@ import 'package:my_flutter/CRUD/tours/add_tour.dart';
 import 'package:my_flutter/CRUD/tours/edit_tour.dart';
 import 'package:my_flutter/CRUD/tours/tourSettings.dart';
 import 'package:my_flutter/home.dart';
+import 'package:my_flutter/login.dart';
+import 'package:my_flutter/providers/token.dart';
+import 'package:provider/provider.dart';
 
 import 'CRUD/governorates/add_governorate.dart';
 
 
-void main() => runApp(MaterialApp(
-      
-      debugShowCheckedModeBanner: false,
-      initialRoute:'/',
-      routes: {
-        '/':(context) => Home(),
-
-        '/govs':(context) => govSettings(),
-        '/addGov':(context) => AddGovernorate(),
-        '/editGov':(context) => EditGovernorate(),
-
-        '/cities':(context) => CitySettings(),
-        '/addCity':(context) => AddCity(),
-        '/editCity':(context) => EditCity(),
-
-        '/hotels':(context) => HotelSettings(),
-        '/addHotel':(context) => AddHotel(),
-        '/editHotel':(context) => EditHotel(),
-
-        '/markets':(context) => MarketSettings(),
-        '/addMarket':(context) => AddMarket(),
-        '/editMarket':(context) => EditMarket(),
-
-        '/restaurants':(context) => RestaurantSettings(),
-        '/addRestaurant':(context) => AddRestaurant(),
-        '/editRestaurant':(context) => EditRestaurant(),
-
-        '/activities':(context) => ActivitySettings(),
-        '/addActivity':(context) => AddActivity(),
-        '/editActivity':(context) => EditActivity(),
-
-        '/companies':(context) => CompanySettings(),
-        '/addCompany':(context) => AddCompany(),
-        '/editCompany':(context) => EditCompany(),
-
-        '/tours':(context) => TourSettings(),
-        '/addTour':(context) => AddTour(),
-        '/editTour':(context) => EditTour(),
-
-        '/destinations':(context) => DestinationSettings(),
-        '/addDestination':(context) => AddDestination(),
-        '/editDestination':(context) => EditDestination(),
-        
-        
-        
-        
-
-        
+void main() => runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => Token()),
+    ],
+    child:   MaterialApp(
+        debugShowCheckedModeBanner: false,
+  
+        initialRoute:'/home',
+  
+        routes: {
+  
+          '/':(context) => Login(),
+  
+          '/home':(context) => Home(),
 
 
-      },
-    ));
+          '/govs':(context) => govSettings(),
+  
+          '/addGov':(context) => AddGovernorate(),
+  
+          '/editGov':(context) => EditGovernorate(),
+  
+  
+  
+          '/cities':(context) => CitySettings(),
+  
+          '/addCity':(context) => AddCity(),
+  
+          '/editCity':(context) => EditCity(),
+  
+  
+  
+          '/hotels':(context) => HotelSettings(),
+  
+          '/addHotel':(context) => AddHotel(),
+  
+          '/editHotel':(context) => EditHotel(),
+  
+  
+  
+          '/markets':(context) => MarketSettings(),
+  
+          '/addMarket':(context) => AddMarket(),
+  
+          '/editMarket':(context) => EditMarket(),
+  
+  
+  
+          '/restaurants':(context) => RestaurantSettings(),
+  
+          '/addRestaurant':(context) => AddRestaurant(),
+  
+          '/editRestaurant':(context) => EditRestaurant(),
+  
+  
+  
+          '/activities':(context) => ActivitySettings(),
+  
+          '/addActivity':(context) => AddActivity(),
+  
+          '/editActivity':(context) => EditActivity(),
+  
+  
+  
+          '/companies':(context) => CompanySettings(),
+  
+          '/addCompany':(context) => AddCompany(),
+  
+          '/editCompany':(context) => EditCompany(),
+  
+  
+  
+          '/tours':(context) => TourSettings(),
+  
+          '/addTour':(context) => AddTour(),
+  
+          '/editTour':(context) => EditTour(),
+  
+  
+  
+          '/destinations':(context) => DestinationSettings(),
+  
+          '/addDestination':(context) => AddDestination(),
+  
+          '/editDestination':(context) => EditDestination(),
+  
+        },
+  
+      ),
+));
   
 var baseUrl='http://192.168.94.178:45455/api';  
+bool isVisible =false;
+var token;
+
 

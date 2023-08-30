@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:my_flutter/providers/token.dart';
 import 'package:my_flutter/widgets/appBar.dart';
 import 'package:my_flutter/widgets/mySideBar.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -23,13 +25,15 @@ class _HomeState extends State<Home> {
             child: Container(
               color: Colors.white,
               child: Center(
-                child: Center(child: Text("welcome")),
-              ),
-            ),
-          ),
-        ],
-      ),
+                child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                  child:Text(Provider.of<Token>(context, listen: false).token),
+                )
+              )
+            )
+          )
+        ]
+      )
     );
   }
 }
-
