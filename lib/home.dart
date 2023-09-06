@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
               child: Center(
                 child: SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
-                  child:Text(Provider.of<Token>(context, listen: false).token),
+                  child:Text("Welocome"),
                 )
               )
             )

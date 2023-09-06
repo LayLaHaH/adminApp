@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class Token extends ChangeNotifier {
-  late String _token;
+  late String _token="0";
 
   String get token => _token;
 

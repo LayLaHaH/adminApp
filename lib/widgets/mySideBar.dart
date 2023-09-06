@@ -35,12 +35,13 @@ class MySideBar extends StatelessWidget {
                 ListTile(leading: Icon(Icons.settings_applications_sharp),
                          title: Text('Companies'),
                          onTap: (){Navigator.pushNamed(context, '/companies');},),
-                ListTile(leading: Icon(Icons.settings_applications_sharp),
-                         title: Text('Tours'),
-                         onTap: (){Navigator.pushNamed(context, '/tours');},),
+                
                 ListTile(leading: Icon(Icons.settings_applications_sharp),
                          title: Text('Activities'),
                          onTap: (){Navigator.pushNamed(context, '/activities');},),
+                ListTile(leading: Icon(Icons.settings_applications_sharp),
+                         title: Text('Tours'),
+                         onTap: (){Navigator.pushNamed(context, '/tours');},),
                 
                 Divider(), 
                 

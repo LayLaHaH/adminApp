@@ -91,7 +91,7 @@ class _DestinationSettingsState extends State<DestinationSettings> {
               //search
               TextField(
                 decoration: InputDecoration(
-                  hintText: 'Search by name...',
+                  hintText: 'Search by name , theme or address',
                   prefixIcon: Icon(Icons.search,color: Colors.pink[800],),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),

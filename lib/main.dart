@@ -42,7 +42,7 @@ void main() => runApp(MultiProvider(
     child:   MaterialApp(
         debugShowCheckedModeBanner: false,
   
-        initialRoute:'/home',
+        initialRoute:'/',
   
         routes: {
   
@@ -126,7 +126,7 @@ void main() => runApp(MultiProvider(
       ),
 ));
   
-var baseUrl='http://192.168.94.178:45455/api';  
+var baseUrl='http://192.168.1.107:45455/api';  
 bool isVisible =false;
 var token;
 

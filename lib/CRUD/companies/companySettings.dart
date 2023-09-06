@@ -23,6 +23,8 @@ class CompanySettings extends StatefulWidget {
 class _CompanySettingsState extends State<CompanySettings> {
 
   bool deleteFlag =false;
+    var _searchQuery;
+    List<Company> _filteredData = [];
 
  Future<List<Company>> getRequest() async {
     // Make a get request to the records from the API
@@ -79,11 +81,11 @@ class _CompanySettingsState extends State<CompanySettings> {
                 child: LeftSideAddress(title:'Company Settings', fontSize: 20.0,),
               ),
               //add button
-              myAddButton(label: "Add Company", route: "/addCompany", maxwidth: 170.0,),
+              //myAddButton(label: "Add Company", route: "/addCompany", maxwidth: 170.0,),
               //search
               TextField(
                 decoration: InputDecoration(
-                  hintText: 'Search by name...',
+                  hintText: 'Search by name , address or contact number',
                   prefixIcon: Icon(Icons.search,color: Colors.pink[800],),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -92,37 +94,68 @@ class _CompanySettingsState extends State<CompanySettings> {
                   filled: true,
                   fillColor: Colors.grey[200],
                 ),
+                onChanged: (value) {
+                setState(() {
+                  _searchQuery = value;
+                  });}
               ),
               //the items
+              Container(
+                  height: 40,
+                  color: Color.fromARGB(31, 165, 146, 146),
+                  child: Row(  
+                    children: [
+                      Expanded(flex: 1, child: Text('   ID')),
+                      Expanded(flex: 4, child: Text('Name')),
+                      Expanded(flex: 2, child: Text('Contact Number')),
+                      Expanded(flex: 2, child: Text('Address')),
+                      Expanded(flex: 2, child: Text('Actions')),
+                    ],
+                  ),
+                ),
               SizedBox(
                 height: MediaQuery.of(context).size.height - 200,
                 child: FutureBuilder<List<Company>>(
                         future: getRequest(),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
+                             final companies = snapshot.data!;
+                             _filteredData = _searchQuery != null && _searchQuery.isNotEmpty
+                                ? companies.where((dest) {
+                                    final query = _searchQuery.toLowerCase();
+                                    return dest.name.toLowerCase().contains(query) ||
+                                        dest.contactNumber.toLowerCase().contains(query) ||
+                                        dest.address.toString().toLowerCase().contains(query) ;
+                                  }).toList()
+                                : companies;
                             return ListView.builder(
-                              itemCount: snapshot.data!.length,
+                              itemCount: _filteredData.length,
                               scrollDirection: Axis.vertical,
-                              itemBuilder: (BuildContext context, int index) =>
+                              itemBuilder: (BuildContext context, int index) {
+                                final comp = _filteredData[index];
+                                return
                               Container(
                                 height: 80,
                                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                                 child: Row(
                                   children: [
-                                    Expanded(flex: 1,child: Text(snapshot.data![index].id.toString()),),
-                                    Expanded(flex: 4,child: Text(snapshot.data![index].name)),
+                                    Expanded(flex: 1,child: Text(comp.id.toString()),),
+                                    Expanded(flex: 4,child: Text(comp.name)),
+                                    Expanded(flex: 2,child: Text(comp.contactNumber)),
+                                    Expanded(flex: 2,child: Text(comp.address)),
                                     Expanded(flex: 2,child:Row(
                                       children: [
-                                        IconButton( icon: Icon(Icons.edit,color: Color.fromARGB(255, 206, 134, 34),),
+                                       /*  IconButton( icon: Icon(Icons.edit,color: Color.fromARGB(255, 206, 134, 34),),
                                           onPressed: (){Navigator.pushNamed(context, '/editCompany',arguments: snapshot.data![index]);},),
-                                        IconButton( icon: Icon(Icons.delete,color: const Color.fromARGB(255, 233, 31, 16),),
-                                          onPressed:  () => deleteAlert(snapshot.data![index].id)),
+                                        */ IconButton( icon: Icon(Icons.delete,color: const Color.fromARGB(255, 233, 31, 16),),
+                                          onPressed:  () => deleteAlert(comp.id)),
                                       ],
                                      )
                                     ),
                                   ],
                                 ),
-                              )
+                              );
+                              }
                             );
                           }
                            else if (snapshot.hasError) {

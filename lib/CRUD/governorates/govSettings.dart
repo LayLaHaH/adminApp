@@ -95,6 +95,18 @@ class _govSettingsState extends State<govSettings> {
                 ),
               ),
               //the items
+              Container(
+                  height: 40,
+                  color: Color.fromARGB(31, 165, 146, 146),
+                  child: Row(  
+                    children: [
+                      Expanded(flex: 1, child: Text('   ID')),
+                      Expanded(flex: 4, child: Text('Name')),
+                      
+                      Expanded(flex: 2, child: Text('Actions')),
+                    ],
+                  ),
+                ),
               SizedBox(
                 height: MediaQuery.of(context).size.height - 200,
                 child: FutureBuilder<List<Governorate>>(

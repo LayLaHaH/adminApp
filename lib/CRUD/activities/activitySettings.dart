@@ -106,12 +106,12 @@ class _ActivitySettingsState extends State<ActivitySettings> {
                   child: Row(  
                     children: [
                       Expanded(flex: 1, child: Text('   ID')),
-                      Expanded(flex: 2, child: Text('Name')),
+                      Expanded(flex: 4, child: Text('Name')),
                       Expanded(flex: 2, child: Text('price')),
-                      Expanded(flex: 4, child: Text('start time')),
-                      Expanded(flex: 4, child: Text('close time')),
-                      Expanded(flex: 4, child: Text('start day')),
-                      Expanded(flex: 4, child: Text('end day')),
+                      Expanded(flex: 2, child: Text('start time')),
+                      Expanded(flex: 2, child: Text('close time')),
+                      Expanded(flex: 2, child: Text('start day')),
+                      Expanded(flex: 2, child: Text('end day')),
                       Expanded(flex: 2, child: Text('Actions')),
                     ],
                   ),
@@ -133,12 +133,12 @@ class _ActivitySettingsState extends State<ActivitySettings> {
                                   child: Row(
                                     children: [
                                       Expanded(flex: 1,child: Text(snapshot.data![index].id.toString()),),
-                                      Expanded(flex: 2,child: Text(snapshot.data![index].name) ),
+                                      Expanded(flex: 4,child: Text(snapshot.data![index].name) ),
                                       Expanded(flex: 2, child: Text(snapshot.data![index].price.toString())),
-                                      Expanded(flex: 4, child: Text(snapshot.data![index].startTime.toString())),
-                                      Expanded(flex: 4, child: Text(snapshot.data![index].closeTime.toString())),
-                                      Expanded(flex: 4, child: Text(snapshot.data![index].startingDay.toString())),
-                                      Expanded(flex: 4, child: Text(snapshot.data![index].endingDay.toString())),
+                                      Expanded(flex: 2, child: Text('${snapshot.data![index].startTime.hour.toString()}:${snapshot.data![index].startTime.minute.toString()}')),
+                                      Expanded(flex: 2, child: Text('${snapshot.data![index].closeTime.hour.toString()}:${snapshot.data![index].closeTime.minute.toString()}')),
+                                      Expanded(flex: 2, child: Text('${snapshot.data![index].startingDay!.month.toString()}/${snapshot.data![index].startingDay!.day.toString()}')),
+                                      Expanded(flex: 2, child: Text('${snapshot.data![index].endingDay!.month.toString()}/${snapshot.data![index].endingDay!.day.toString()}')),
                                       Expanded(flex: 2,child:Row(
                                         children: [
                                           IconButton( icon: Icon(Icons.edit,color: Color.fromARGB(255, 206, 134, 34),),
